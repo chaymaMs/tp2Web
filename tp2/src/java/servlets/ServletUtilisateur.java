@@ -78,19 +78,15 @@ public class ServletUtilisateur extends HttpServlet {
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "utilisateur trouve";
                }
-              else if (action.equals("updateUtilisateur")) { 
+             else if (action.equals("updateUtilisateur")) { 
+                  
+                gestionnaireUtilisateurs.updateUser(login, nom, prenom);   
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                for(Utilisateur u: liste){
-                    if (u.getLogin().equals(login)){
-                        u.setFirstname(nom);
-                        u.setLastname(prenom);
-                    }
-                }
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Liste des utilisateurs";
+                message = "Utilisateur modifié";
                        
-            }  
+            } 
               else if (action.equals("deleteUtilisateur")) { 
                      
                 gestionnaireUtilisateurs.deleteUser(login);

@@ -1,6 +1,6 @@
 package utilisateurs.gestionnaire;  
   
-import java.util.ArrayList;
+
 import java.util.Collection;  
 import javax.ejb.Stateless;  
 import javax.persistence.EntityManager;  
@@ -65,4 +65,10 @@ public class GestionnaireUtilisateurs {
         }
         return val;
     }
+    public void updateUser(String login,String firstname, String lastname) {  
+ 
+        Query q = em.createQuery("update Utilisateur u set u.firstname='"+firstname+"', u.lastname='"+lastname+"' where u.login='"+login+"'");
+        q.executeUpdate(); 
+          
+    }  
 }
