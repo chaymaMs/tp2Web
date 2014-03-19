@@ -74,9 +74,12 @@ public class ServletUtilisateur extends HttpServlet {
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 for(Utilisateur u : liste){
                     if(u.getLogin().equals(login)){
+                    }
+                }
 
+           
                 
-                if(!login.equals("")){
+         
                 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
