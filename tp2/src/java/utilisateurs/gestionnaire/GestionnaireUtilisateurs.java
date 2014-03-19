@@ -1,5 +1,6 @@
 package utilisateurs.gestionnaire;  
   
+import java.util.ArrayList;
 import java.util.Collection;  
 import javax.ejb.Stateless;  
 import javax.persistence.EntityManager;  
@@ -15,30 +16,42 @@ public class GestionnaireUtilisateurs {
     private EntityManager em;  
   
     public void creerUtilisateursDeTest() {  
-        creeUtilisateur( "jlennon","John", "Lennon");  
-        creeUtilisateur("pmc","Paul", "Mac Cartney");  
-        creeUtilisateur("rstarr","Ringo", "Starr");  
+        creeUtilisateur("jlennon","John", "Lennon");  
+        creeUtilisateur( "pmc","Paul", "Mac Cartney");  
+        creeUtilisateur( "rstarr","Ringo", "Starr");  
         creeUtilisateur("georgesH","Georges", "Harisson");  
     }  
   
-    public Utilisateur creeUtilisateur(String nom, String prenom, String login) {  
-        if(loginExist(login)){
-            Utilisateur u = new Utilisateur(nom, prenom, login);  
-            em.persist(u);  
-            return u; 
+    public Utilisateur creeUtilisateur(String login,String nom, String prenom) {  
+     
+        if(!loginExist(login)){
+              Utilisateur u = new Utilisateur(login, nom, prenom);  
+            em.persist(u); 
+            return u;
+            
         }
-        return null;
+        return null; 
     }  
   
     public Collection<Utilisateur> getAllUsers() {  
         // Exécution d'une requête équivalente à un select *  
-        
         Query q = em.createQuery("select u from Utilisateur u");  
         return q.getResultList();  
     }  
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
-    public boolean loginExist(String login){
+    public Collection<Utilisateur> getUser(String login) {  
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("select u from Utilisateur u where u.login='"+login+"'");  
+        return q.getResultList();  
+    }   
+   public void deleteUser(String login){
+       Collection<Utilisateur> utilisateurs= getUser(login);
+        for(Utilisateur u : utilisateurs){
+            em.remove(u);
+        }
+   }
+   public boolean loginExist(String login){
         boolean val=false;
         Collection<Utilisateur> utilisateurs= getAllUsers();
         for(Utilisateur u : utilisateurs){

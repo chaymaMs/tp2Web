@@ -4,6 +4,7 @@
  */
 package servlets;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -23,6 +24,7 @@ public class ServletUtilisateur extends HttpServlet {
     // ici injection de code ! On n'initialise pas !
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
+    private Iterable<Utilisateur> utilisateurs;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,6 +43,7 @@ public class ServletUtilisateur extends HttpServlet {
         String login=request.getParameter("login");
         String forwardTo = "";
         String message = "";
+        
         if (action != null) {
             if (action.equals("listerLesUtilisateurs")) {
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
@@ -53,47 +56,50 @@ public class ServletUtilisateur extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
+                
             } 
               else if (action.equals("creerUnUtilisateur")) {
-                
-                if(!nom.isEmpty()&& !prenom.isEmpty()&& !login.isEmpty()){
-                gestionnaireUtilisateurs.creeUtilisateur(login,prenom,nom);
+                if((!nom.isEmpty()&& !prenom.isEmpty()&& !login.isEmpty())){
+                gestionnaireUtilisateurs.creeUtilisateur(login,nom,prenom);
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
-                } else{
+                }  else{
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs"; 
                 }
-                    
               }
-            else if (action.equals("chercherParLogin")) {
+              else if (action.equals("chercherParLogin")) {
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUser(login);
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "utilisateur trouve";
+               }
+              else if (action.equals("updateUtilisateur")) { 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                for(Utilisateur u : liste){
-                    if(u.getLogin().equals(login)){
+                for(Utilisateur u: liste){
+                    if (u.getLogin().equals(login)){
+                        u.setFirstname(nom);
+                        u.setLastname(prenom);
                     }
                 }
-
-           
-                
-         
-                
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
-                } else{
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                       
+            }  
+              else if (action.equals("deleteUtilisateur")) { 
+                     
+                gestionnaireUtilisateurs.deleteUser(login);
+               Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Liste des utilisateurs"; 
-                }
+                message = "Liste des utilisateurs";
                     
-              }
-              
+            }
               else {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
