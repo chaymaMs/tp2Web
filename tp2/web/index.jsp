@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="template.jsp">
                 <jsp:param name="content" value="index"/>
-                <jsp:param name="title" value="Index"/>
+               <jsp:param name="title" value="Index"/> 
 </jsp:include>
 <html>
     <head>
@@ -105,10 +105,7 @@
 
         </c:if>
             
-           <jsp:include page="template.jsp">
-                <jsp:param name="content" value="index"/>
-                <jsp:param name="title" value="Index"/>
-           </jsp:include>
+         
             
     </body>
 </html>

@@ -57,7 +57,12 @@ https://github.com/pmcelhaney/semantic-form.css/blob/master/index.html
 form.semantic {
 	width:70%;
 }
-
+form.semantic h1 {
+	color: #FF00FF;
+}
+form.semantic h2 {
+	color: #FF00FF;
+}
 form.semantic fieldset
 {
 	clear: both;
@@ -140,6 +145,7 @@ form.semantic ul {
 form.semantic li {
 	clear: both;
 	padding: 0.2em 0;
+        color: #00FF00
 }
 
 form.semantic li label {
