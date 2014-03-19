@@ -5,7 +5,10 @@
 
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<jsp:include page="template.jsp">
+                <jsp:param name="content" value="index"/>
+                <jsp:param name="title" value="Index"/>
+</jsp:include>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -102,7 +105,10 @@
 
         </c:if>
             
-           
+           <jsp:include page="template.jsp">
+                <jsp:param name="content" value="index"/>
+                <jsp:param name="title" value="Index"/>
+           </jsp:include>
             
     </body>
 </html>
