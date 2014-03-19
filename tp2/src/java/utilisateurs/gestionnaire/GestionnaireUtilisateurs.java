@@ -13,7 +13,11 @@ public class GestionnaireUtilisateurs {
     // Ici injection de code : on n'initialise pas. L'entity manager sera créé  
     // à partir du contenu de persistence.xml  
     @PersistenceContext  
-    private EntityManager em;  
+    private EntityManager em;
+    
+    
+    
+   //gdshgcfdshgcfhs
   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("jlennon","John", "Lennon");  
