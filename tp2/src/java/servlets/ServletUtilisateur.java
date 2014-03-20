@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
 import utilisateurs.modele.Utilisateur;
 /**
@@ -43,6 +44,7 @@ public class ServletUtilisateur extends HttpServlet {
         String login=request.getParameter("login");
         String forwardTo = "";
         String message = "";
+        HttpSession session = request.getSession(true);
         
         if (action != null) {
             if (action.equals("listerLesUtilisateurs")) {
@@ -96,6 +98,27 @@ public class ServletUtilisateur extends HttpServlet {
                 message = "Liste des utilisateurs";
                     
             }
+              
+              else if (action.equals("checkConnexion")) {
+		if(request.getParameter("log").equals("toto") && request.getParameter("pass").equals("toto")) {
+                    session.setAttribute("login", "toto");           
+                    session.setAttribute("mdp", "toto");        
+                    session.setAttribute("connecte", true);
+                    
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                    message = "Vous etes connecte";
+                }else {      
+                    session.setAttribute("connecte", false);
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                    message = "Mot de passe incorrect";
+                      }
+               }
+               else if(action.equals("deconnexion")) { 
+                    session.setAttribute("connecte", false);
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                    message = "Vous ete deconnecte";
+                      }
+              
               else {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";

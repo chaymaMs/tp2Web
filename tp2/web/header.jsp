@@ -1,23 +1,14 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-    <div class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-
-          </button>
-          <a class="navbar-brand" href="#">Conectez vous</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Login" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Mot de passe" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Connexion</button>
-          </form>
-        </div>
-      </div>
-    </div>
+<c:if test="${!connecte}"> 
+    <form action="ServletUsers" method="get" id="formconnexion"> 
+        Connexion : 
+        <input type="text" name="log"><br/>
+        <input type="text" name="pass"><br/> 
+        <input type="hidden" name="action" value="checkConnexion">
+        <input type="submit" name="submit" value="Connexion">
+    </form>
+    </c:if>
+<c:if test="${connecte}">
+    <a href="ServletUsers?action=deconnexion">Déconnexion</a>
+    </c:if>
