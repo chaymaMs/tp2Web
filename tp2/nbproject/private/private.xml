@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/src/java/utilisateurs/gestionnaire/GestionnaireUtilisateurs.java</file>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/src/java/utilisateurs/modele/Utilisateur.java</file>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/web/index.html</file>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/web/index.jsp</file>
-            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/tp2/src/java/servlets/ServletUtilisateur.java</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/web/index.html</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/web/template.jsp</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/src/java/servlets/ServletUtilisateur.java</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/web/index.jsp</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/web/resources/style.css</file>
+            <file>file:/C:/Users/Chayma/Documents/GitHub/tp2Web/tp2/web/header.jsp</file>
         </group>
     </open-files>
 </project-private>

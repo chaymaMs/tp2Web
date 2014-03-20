@@ -7,13 +7,20 @@
 <title>${param.title}</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/bootstrap.min.css" />
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
-
 	
-	<h1>${param.title}</h1>
+        <jsp:include page="header.jsp"/>
 
+	<jsp:include page="${param.content}.jsp"/>
+	
+<%--	<jsp:include page="footer.jsp"/> --%>
+	
+        <!-- Scripts Jquery et Bootstrap -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap.min.js" ></script>
 	
 	
 </body>
