@@ -4,7 +4,6 @@
  */
 package servlets;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -42,6 +41,7 @@ public class ServletUtilisateur extends HttpServlet {
         String nom=request.getParameter("nom");
         String prenom=request.getParameter("prenom");
         String login=request.getParameter("login");
+        String nbUtilisateurs= request.getParameter("nb");
         String forwardTo = "";
         String message = "";
         HttpSession session = request.getSession(true);
@@ -74,6 +74,14 @@ public class ServletUtilisateur extends HttpServlet {
                 message = "Liste des utilisateurs"; 
                 }
               }
+              else if (action.equals("creerDesUtilisateurs")) {
+                gestionnaireUtilisateurs.creerNbUtilisateurs(nbUtilisateurs);
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Liste des utilisateurs";
+               }
+              
               else if (action.equals("chercherParLogin")) {
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUser(login);
                 request.setAttribute("listeDesUsers", liste);

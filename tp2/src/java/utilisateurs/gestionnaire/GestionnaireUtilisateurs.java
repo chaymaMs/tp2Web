@@ -24,7 +24,12 @@ public class GestionnaireUtilisateurs {
         creeUtilisateur( "pmc","Paul", "Mac Cartney");  
         creeUtilisateur( "rstarr","Ringo", "Starr");  
         creeUtilisateur("georgesH","Georges", "Harisson");  
-    }  
+    }
+    public void creerNbUtilisateurs(int nb){
+        for(int i=0; i<nb; i++){
+            creeUtilisateur("login"+i,"prenom","nom");
+        }
+    }
   
     public Utilisateur creeUtilisateur(String login,String nom, String prenom) {  
      
@@ -70,5 +75,12 @@ public class GestionnaireUtilisateurs {
         Query q = em.createQuery("update Utilisateur u set u.firstname='"+firstname+"', u.lastname='"+lastname+"' where u.login='"+login+"'");
         q.executeUpdate(); 
           
-    }  
+    }
+    public Collection<Utilisateur> getUsersByTen(int index){
+         Query q = em.createQuery("select u from Utilisateur u");  
+         q.setMaxResults(10);
+         q.setFirstResult(10*index);
+         return q.getResultList();
+        
+    }
 }

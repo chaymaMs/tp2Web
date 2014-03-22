@@ -6,7 +6,7 @@
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:if test="${!connecte}"> 
-    <h1>Veuillez d'abord vou identifier pour accèder au site</h1>
+    <h1>Veuillez d'abord vous identifier pour accèder au site</h1>
 </c:if>
 <c:if test="${connecte}"> 
 
@@ -27,6 +27,14 @@
             </ul>
 
             <ol>
+                <li>Combien voulez-vous créer d'utilisateurs </li>
+                <form action="ServletUsers" method="get">
+                    Nombre : <input type=number name="nb"/><br>
+                    <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->
+                    <input type="hidden" name="action" value="creerDesUtilisateurs"/>
+                    <input type="submit" value="Créer des utilisateurs" name="submit"/>
+                </form>
+                
                 <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>
 
                 <li>Créer un utilisateur</li>
@@ -70,7 +78,7 @@
             <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
                 <h2>Liste des utilisateurs</h2>
 
-                <table border="10">
+                <table class="table table-bordered">
                     <!-- La ligne de titre du tableau des comptes -->
                     <tr>
                         <td><b>Login</b></td>
@@ -96,9 +104,13 @@
                     </c:forEach>
 
                     <!-- Affichage du solde total dans la dernière ligne du tableau -->
-                    <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>
+                    <tr><td><b>TOTAL</b></td>
+                        <td></td>
+                        <td><b>${total}</b></td>
+                        </tr>
                 </table>
 
             </c:if>
         </div>
+    </div>
     </c:if>
