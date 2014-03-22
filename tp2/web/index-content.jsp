@@ -29,7 +29,7 @@
             <ol>
                 <li>Combien voulez-vous créer d'utilisateurs </li>
                 <form action="ServletUsers" method="get">
-                    Nombre : <input type=number name="nb"/><br>
+                    Nombre : <input type="texte" name="utilisateur"/><br>
                     <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->
                     <input type="hidden" name="action" value="creerDesUtilisateurs"/>
                     <input type="submit" value="Créer des utilisateurs" name="submit"/>

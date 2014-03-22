@@ -41,7 +41,8 @@ public class ServletUtilisateur extends HttpServlet {
         String nom=request.getParameter("nom");
         String prenom=request.getParameter("prenom");
         String login=request.getParameter("login");
-        String nbUtilisateurs= request.getParameter("nb");
+        String nbUtilisateurs= request.getParameter("utilisateur");
+        //int nbUsers=Integer.parseInt(nbUtilisateurs); 
         String forwardTo = "";
         String message = "";
         HttpSession session = request.getSession(true);
@@ -75,7 +76,7 @@ public class ServletUtilisateur extends HttpServlet {
                 }
               }
               else if (action.equals("creerDesUtilisateurs")) {
-                gestionnaireUtilisateurs.creerNbUtilisateurs(nbUtilisateurs);
+                gestionnaireUtilisateurs.creerNbUtilisateurs(Integer.parseInt(nbUtilisateurs));
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
